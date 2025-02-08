@@ -1,0 +1,1 @@
+export * from '@/Pages/AddAmin/addAdmin'

@@ -120,7 +120,7 @@ export const Sidebar = () => {
             ></i>
             <Dialog>
               <DialogTrigger
-                className="font-[500] "
+                className="font-[500] w-full text-start"
                 style={{ color: isActive("/cart") ? "black" : "#BCBCBC" }}
               >
                 Chiqish

@@ -1,8 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { useNavigate } from "react-router-dom";
 export const Sidebar = () => {
   const local = useLocation();
-
+  const navigate = useNavigate();
   const isActive = (path) => local.pathname === path;
+
+  const LogOut = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   return (
     <>
@@ -64,12 +79,10 @@ export const Sidebar = () => {
               <i
                 style={{ color: isActive("/words") ? "black" : "#BCBCBC" }}
                 className=" transition-all mr-[2px] duration-150 ease-in-out fa-solid fa-file-word text-[#BCBCBC] text-[20px]"
-                onClick={() => setCloseCart(true)}
               ></i>
               <p
                 style={{ color: isActive("/words") ? "black" : "#BCBCBC" }}
                 className="relative w-full transition-all duration-150 ease-in-out text-[#BCBCBC] font-[500] text-[17px]"
-                onClick={() => setCloseCart(true)}
               >
                 So'zlar
               </p>
@@ -84,37 +97,59 @@ export const Sidebar = () => {
             >
               <i
                 style={{ color: isActive("/addAdmin") ? "black" : "#BCBCBC" }}
-                onChange={() => setCloseOrder(true)}
                 className=" transition-all duration-150 ease-in-out fa-solid fa-user text-[#BCBCBC] text-[20px]"
               ></i>
               <p
                 style={{ color: isActive("/addAdmin") ? "black" : "#BCBCBC" }}
                 className=" transition-all w-full duration-150 relative ease-in-out text-[#BCBCBC] font-[500] text-[17px]"
-                onClick={() => setCloseOrder(true)}
               >
                 Admin qo'shish
               </p>
             </div>
           </Link>
           <div
-              style={{
-                backgroundColor: isActive("/cart") ? "#EFEFEF" : "",
-              }}
-              className="w-full flex cursor-pointer transition-all duration-150 ease-in-out pl-[15px] rounded-[12px] max-w-[267px] justify-start items-center py-[15px] gap-[16px]"
-            >
-              <i
+            style={{
+              backgroundColor: isActive("/cart") ? "#EFEFEF" : "",
+            }}
+            className="w-full flex cursor-pointer transition-all duration-150 ease-in-out pl-[15px] rounded-[12px] max-w-[267px] justify-start items-center py-[15px] gap-[16px]"
+          >
+            <i
+              style={{ color: isActive("/cart") ? "black" : "#BCBCBC" }}
+              onChange={() => setCloseOrder(true)}
+              className=" transition-all duration-150 ease-in-out fa-solid fa-right-from-bracket text-[#BCBCBC] text-[20px]"
+            ></i>
+            <Dialog>
+              <DialogTrigger
+                className="font-[500] "
                 style={{ color: isActive("/cart") ? "black" : "#BCBCBC" }}
-                onChange={() => setCloseOrder(true)}
-                className=" transition-all duration-150 ease-in-out fa-solid fa-right-from-bracket text-[#BCBCBC] text-[20px]"
-              ></i>
-              <p
-                style={{ color: isActive("/cart") ? "black" : "#BCBCBC" }}
-                className=" transition-all w-full duration-150 relative ease-in-out text-[#BCBCBC] font-[500] text-[17px]"
-                onClick={() => setCloseOrder(true)}
               >
                 Chiqish
-              </p>
-            </div>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle className="flex flex-col gap-5 text-center w-full justify-center">
+                    <p className="text-center">
+                      Haqiqatdan chiqishni tasdiqlaysizmi?
+                    </p>
+                    <div className="w-full items-center flex mx-auto justify-between max-w-[280px]">
+                      <p
+                        onClick={LogOut}
+                        className="text-red-500 cursor-pointer border-red-500 border-[2px] py-[5px] w-full max-w-[120px] rounded-md"
+                      >
+                        Tasdiqlash
+                      </p>
+                      <DialogClose className=" w-full max-w-[120px]">
+                        <p className="text-green-400 border-green-400 cursor-pointer border-[2px] py-[5px] w-full max-w-[120px] rounded-md">
+                          Bekor qilish
+                        </p>
+                      </DialogClose>
+                    </div>
+                  </DialogTitle>
+                  <DialogDescription className="flex gap-5 items-center"></DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </div>
     </>

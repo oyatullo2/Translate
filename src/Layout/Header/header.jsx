@@ -122,7 +122,9 @@ export const Header = () => {
     return (
       <>
         <div className="w-full flex justify-between items-center mt-[20px]">
-          <p className="text-[20px] text-[#00302E] font-[600]">Admin qo'shish</p>
+          <p className="text-[20px] text-[#00302E] font-[600]">
+            Admin qo'shish
+          </p>
           <Dialog>
             <DialogTrigger className="border-[2px] border-blue-200 py-[3px] w-full max-w-[150px] text-[#00302E] font-[500] flex justify-center items-center rounded-md">
               + Yangi qo'shish
@@ -146,9 +148,7 @@ export const Header = () => {
                     placeholder="Enter new admin password"
                   />
                 </DialogTitle>
-                <DialogDescription className="flex gap-5 items-center">
-                 
-                </DialogDescription>
+                <DialogDescription className="flex gap-5 items-center"></DialogDescription>
                 <button className="border-[2px] border-blue-200 py-[3px] w-full text-[#00302E] font-[500] flex justify-center items-center rounded-md">
                   Save
                 </button>
@@ -164,8 +164,44 @@ export const Header = () => {
     <>
       <div className="w-full flex justify-between items-center mt-[20px]">
         <p className="text-[20px] text-[#00302E] font-[600]">
-          Kichik Bo'limlar
+          Kichik bo'limlar
         </p>
+        <Dialog>
+          <DialogTrigger className="border-[2px] border-blue-200 py-[3px] w-full max-w-[150px] text-[#00302E] font-[500] flex justify-center items-center rounded-md">
+            + Yangi qo'shish
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>
+                <input
+                  className="w-full border-[2px] border-blue-200 outline-none max-w-[250px] py-[3px] rounded-md px-[10px]"
+                  type="text"
+                  placeholder="Enter section name"
+                />
+              </DialogTitle>
+              <DialogDescription className="flex pb-[20px] gap-5 items-center">
+                <label
+                  htmlFor="file"
+                  className="border-[2px]  border-blue-200 py-[3px] w-full max-w-[150px] text-[#00302E] font-[500] flex justify-center items-center rounded-md"
+                >
+                  <input
+                    type="file"
+                    className="hidden"
+                    id="file"
+                    onChange={handleFileChange}
+                  />
+                  <span>Choose file</span>
+                </label>
+                <span className="text-[#00302E] line-clamp-1 max-w-[250px]">
+                  {fileName ? fileName : "Choose file"}
+                </span>
+              </DialogDescription>
+              <button className="border-[2px] border-blue-200 py-[3px] w-full text-[#00302E] font-[500] flex justify-center items-center rounded-md">
+                Save
+              </button>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
     </>
   );
